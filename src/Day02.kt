@@ -4,11 +4,12 @@ fun convertInputToGames(input: List<String>): List<List<Int>> {
         .map { listOf(it[0].toCharArray()[0].code - 65, it[1].toCharArray()[0].code - 88) }
 }
 
-fun scoreGame (opp: Int, player: Int): Int {
-    return when (opp) {
-        player -> 3 + player + 1
-        (player + 1) % 3 -> player + 1
-        else -> 6 + player + 1
+fun scoreGame (opponentPlays: Int, wePlay: Int): Int {
+    val playerScore = wePlay + 1
+    return when (opponentPlays) {
+        wePlay -> 3 + playerScore // Draw
+        (wePlay + 1) % 3 -> playerScore // Lose
+        else -> 6 + playerScore // Win
     }
 }
 
