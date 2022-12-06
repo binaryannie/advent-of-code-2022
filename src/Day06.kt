@@ -2,15 +2,17 @@ private const val DAY = "06"
 private const val PART_1_CHECK = 7
 private const val PART_2_CHECK = 19
 
+fun messageSeeker(input: String, windowSize: Int): Int {
+    return input.windowed(windowSize).map { it.toSet() }.indexOfFirst { it.size == windowSize } + windowSize
+}
+
 fun main() {
-    fun part1(input: List<String>): Int? {
-        input[0].windowed(4).map { it.toSet() }.forEachIndexed { index, window -> if (window.size == 4) return index + 4 }
-        return null
+    fun part1(input: List<String>): Int {
+        return messageSeeker(input[0], 4)
     }
 
-    fun part2(input: List<String>): Int? {
-        input[0].windowed(14).map { it.toSet() }.forEachIndexed { index, window -> if (window.size == 14) return index + 14 }
-        return null
+    fun part2(input: List<String>): Int {
+        return messageSeeker(input[0], 14)
     }
 
     // test if implementation meets criteria from the description, like:
